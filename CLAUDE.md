@@ -6,9 +6,10 @@ project. The user tells it where the real instructions live, and it fetches them
 ## Every session, before anything else
 
 1. If `bash bootstrap.sh` prints `READY`, go to step 4.
-2. Get two things from the user. If their first message already contains a link to a
-   start document (people often arrive through a prefilled link), use it and ask only for
-   the token. Otherwise ask, in plain words and in one message, for both:
+2. Get two things from the user. Their first message often already contains one or both:
+   a link to a start document, and an access token for it (people paste them from a guide).
+   Use whatever is there and ask only for what is missing, in plain words and in one
+   message. The two things are:
    - **A link to the start document**: open it in their git host's web page and copy the
      address from the browser. A link to a file carries the repository, branch and path.
      A plain clone URL also works; then ask which file to start from, and the branch if it
@@ -18,7 +19,9 @@ project. The user tells it where the real instructions live, and it fetches them
      permissions to tick; if they have not seen one, say the token needs at least read
      access to code.
 
-   Say both stay in this session only. Treat both as secrets: never echo them back, never
+   Say both stay in this session only. If the first message holds other credentials too,
+   leave them for the start document, which says what they are for. Treat all of them as
+   secrets: never echo them back, never
    write them anywhere except below, never commit them.
 
    ```bash
