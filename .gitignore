@@ -1,0 +1,4 @@
+agent/
+.playwright/
+node_modules/
+.env

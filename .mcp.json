@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "browser": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@0.0.83",
+        "--headless",
+        "--browser",
+        "chromium",
+        "--isolated",
+        "--no-sandbox",
+        "--viewport-size",
+        "1440x900",
+        "--output-dir",
+        ".playwright",
+        "--init-page",
+        "browser/inject-auth.ts"
+      ]
+    }
+  }
+}
