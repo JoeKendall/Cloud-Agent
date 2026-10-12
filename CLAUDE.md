@@ -6,7 +6,9 @@ project. The user tells it where the real instructions live, and it fetches them
 ## Every session, before anything else
 
 1. If `bash bootstrap.sh` prints `READY`, go to step 4.
-2. Ask the user, in plain words and in one message, for two things:
+2. Get two things from the user. If their first message already contains a link to a
+   start document (people often arrive through a prefilled link), use it and ask only for
+   the token. Otherwise ask, in plain words and in one message, for both:
    - **A link to the start document**: open it in their git host's web page and copy the
      address from the browser. A link to a file carries the repository, branch and path.
      A plain clone URL also works; then ask which file to start from, and the branch if it
