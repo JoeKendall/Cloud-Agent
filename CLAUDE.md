@@ -5,7 +5,8 @@ project. The user tells it where the real instructions live, and it fetches them
 
 ## Every session, before anything else
 
-1. If `bash bootstrap.sh` prints `READY`, go to step 4.
+1. If `bash bootstrap.sh` prints `READY`, go to step 4. It reads `AGENT_START_LINK` and
+   `AGENT_SOURCE_TOKEN` from the environment when both are set, so nothing needs asking.
 2. Get two things from the user. Their first message often already contains one or both:
    a link to a start document, and an access token for it (people paste them from a guide).
    Use whatever is there and ask only for what is missing, in plain words and in one
@@ -37,7 +38,8 @@ project. The user tells it where the real instructions live, and it fetches them
    `setup-session.sh` next to the start document, if there is one (it may install things,
    and can take a minute). On `NOT READY`, tell the user what it says in plain words and
    ask again for whatever was wrong.
-4. Read the start document it names and follow it. From then on it is the job
+4. Read the start document it names with the Read tool and follow it. Reading a file in
+   `agent/` also loads that repository's skills, so its slash commands work from then on. From then on it is the job
    description, and its paths are relative to `agent/`.
 
 To switch branch or source later, update `~/.agent-secrets/source.json` and run step 3 again.
