@@ -33,6 +33,13 @@ git -C "$dir" config user.email "cloud-agent@noreply.invalid"
 
 entry_dir="$(dirname "$dir/$entry")"
 if [ -x "$entry_dir/setup-session.sh" ]; then
-  "$entry_dir/setup-session.sh" || fail "the repository's setup-session.sh failed"
+  log="$HOME/.agent-setup.log"
+  if "$entry_dir/setup-session.sh" > "$log" 2>&1; then
+    cat "$log"
+  else
+    rc=$?
+    echo "--- last lines of $log:" >&2; tail -n 25 "$log" >&2
+    fail "the repository's setup-session.sh failed (exit $rc); its full output is in $log"
+  fi
 fi
 echo "READY: agent/ on $branch @ $(git -C "$dir" rev-parse --short HEAD). Start document: agent/$entry"
