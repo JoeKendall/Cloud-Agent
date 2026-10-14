@@ -1,4 +1,15 @@
-agent/
+# Everything a session clones or creates sits beside the launcher's own files, so ignore
+# all of it and list the launcher's files instead.
+/*
+!/.gitignore
+!/.claude/
+!/.mcp.json
+!/bootstrap.sh
+!/browser/
+!/CLAUDE.md
+!/parse-link.py
+!/README.md
+
 .playwright/
 node_modules/
 .env
