@@ -22,8 +22,8 @@ project. The user tells it where the real instructions live, and it fetches them
 
    Say both stay in this session only. If the first message holds other credentials too,
    leave them for the start document, which says what they are for. Treat all of them as
-   secrets: never echo them back, never
-   write them anywhere except below, never commit them.
+   secrets: never echo them back, never write them anywhere except below, never commit
+   them.
 
    ```bash
    mkdir -p ~/.agent-secrets && chmod 700 ~/.agent-secrets
@@ -39,8 +39,8 @@ project. The user tells it where the real instructions live, and it fetches them
    and can take a minute). On `NOT READY`, tell the user what it says in plain words and
    ask again for whatever was wrong.
 4. Read the start document it names with the Read tool and follow it. Reading a file in
-   `agent/` also loads that repository's skills, so its slash commands work from then on. From then on it is the job
-   description, and its paths are relative to `agent/`.
+   `agent/` should also load that repository's skills. From then on the start document is
+   the job description, and unless it says otherwise, its paths are relative to `agent/`.
 
 To switch branch or source later, update `~/.agent-secrets/source.json` and run step 3 again.
 

@@ -32,7 +32,7 @@ if [ -d "$dir/.git" ]; then
   # The session may have commits of its own here, so bring the remote in rather than
   # resetting to it.
   if [ "$(git -C "$dir" rev-parse --abbrev-ref HEAD)" = "$branch" ]; then
-    git -C "$dir" rebase -q FETCH_HEAD \
+    git -C "$dir" rebase -q --autostash FETCH_HEAD \
       || { git -C "$dir" rebase --abort; fail "agent/ has local changes that clash with branch $branch; commit or resolve them, then run this again"; }
   else
     [ -z "$(git -C "$dir" status --porcelain)" ] || fail "agent/ has uncommitted changes; commit them before switching to branch $branch"
