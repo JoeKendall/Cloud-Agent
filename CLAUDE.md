@@ -51,5 +51,11 @@ To switch branch or source later, update `~/.agent-secrets/source.json` and run 
   sign the browser in at any point. Each rule applies only to URLs matching its pattern;
   see `browser/inject-auth.ts` for the format. The source's `setup-session.sh` is expected
   to install the Chromium build this server needs.
+- `unseal.sh`: opens credentials that arrive sealed in the first message, for sessions
+  started by a trigger rather than a person. Run it only when the start document says to,
+  from this directory, feeding it the block from `-----BEGIN CMS-----` to
+  `-----END CMS-----` exactly: `bash unseal.sh <<'SEALED'` ... `SEALED`. It needs
+  `AGENT_UNSEAL_KEY` in the environment and saves each credential inside as a file in
+  `~/.agent-secrets/`, printing only the names.
 
 Never commit anything to this repo during a session.

@@ -1,10 +1,6 @@
 {
   "enabledMcpjsonServers": ["browser"],
   "permissions": {
-    "allow": [
-      "mcp__browser",
-      "Bash(bash qa-agent/relay/unseal.sh*)",
-      "Bash(bash agent/qa-agent/relay/unseal.sh*)"
-    ]
+    "allow": ["mcp__browser", "Bash(bash unseal.sh*)"]
   }
 }

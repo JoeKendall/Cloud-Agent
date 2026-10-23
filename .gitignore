@@ -9,6 +9,7 @@
 !/CLAUDE.md
 !/parse-link.py
 !/README.md
+!/unseal.sh
 
 .playwright/
 node_modules/
