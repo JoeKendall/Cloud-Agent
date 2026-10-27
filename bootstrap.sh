@@ -13,7 +13,7 @@ fail() { echo "NOT READY: $*" >&2; exit 1; }
 if [ -n "${AGENT_START_LINK:-}" ] && [ -n "${AGENT_SOURCE_TOKEN:-}" ]; then
   mkdir -p "$secrets" && chmod 700 "$secrets"
   python3 "$root/parse-link.py" "$AGENT_START_LINK" > "$secrets/source.json" || fail "AGENT_START_LINK is not a link this launcher understands"
-  printf '%s' "$AGENT_SOURCE_TOKEN" > "$secrets/source-token"
+  printf '%s' "$AGENT_SOURCE_TOKEN" | tr -d '[:space:]' > "$secrets/source-token"
   chmod 600 "$secrets"/*
 fi
 
