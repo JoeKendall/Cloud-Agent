@@ -10,5 +10,7 @@ start document. It also provides a headless browser whose request headers the st
 document can set at runtime. It contains no project knowledge and no secrets.
 
 Cloud environment: set `AGENT_START_LINK` and `AGENT_SOURCE_TOKEN`, and network access to
-the hosts the start document needs. Pick this repository when starting the session. Anyone
+the hosts the start document needs. A session started by a trigger can leave out
+`AGENT_SOURCE_TOKEN` and bring its token in the first message instead, saved with
+`unseal.sh` before `bootstrap.sh` runs. Pick this repository when starting the session. Anyone
 who can use an environment can read its variables, so keep it personal.

@@ -5,8 +5,11 @@ project. The user tells it where the real instructions live, and it fetches them
 
 ## Every session, before anything else
 
-1. If `bash bootstrap.sh` prints `READY`, go to step 4. It reads `AGENT_START_LINK` and
-   `AGENT_SOURCE_TOKEN` from the environment when both are set, so nothing needs asking.
+1. If the session was started by a trigger and its prompt says to save credentials from the
+   first message with `unseal.sh` before bootstrapping, do that first (see below). Then, if
+   `bash bootstrap.sh` prints `READY`, go to step 4. It reads `AGENT_START_LINK` and
+   `AGENT_SOURCE_TOKEN` from the environment, so nothing needs asking. With only the link
+   set, it uses the token `unseal.sh` saved.
 2. Get two things from the user. Their first message often already contains one or both:
    a link to a start document, and an access token for it (people paste them from a guide).
    Use whatever is there and ask only for what is missing, in plain words and in one
@@ -21,7 +24,8 @@ project. The user tells it where the real instructions live, and it fetches them
      access to code.
 
    Say both stay in this session only. If the first message holds other credentials too,
-   leave them for the start document, which says what they are for. Treat all of them as
+   leave them for the start document, which says what they are for, unless the prompt that
+   started the session says to save them first. Treat all of them as
    secrets: never echo them back, never write them anywhere except below, never commit
    them.
 

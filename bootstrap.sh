@@ -9,11 +9,14 @@ dir="$root/agent"
 secrets="$HOME/.agent-secrets"
 fail() { echo "NOT READY: $*" >&2; exit 1; }
 
-# A link and token kept in the environment's variables stand in for pasting them.
-if [ -n "${AGENT_START_LINK:-}" ] && [ -n "${AGENT_SOURCE_TOKEN:-}" ]; then
+# A link and token kept in the environment's variables stand in for pasting them. A link
+# without a token uses the token already saved, for example by unseal.sh from the first message.
+if [ -n "${AGENT_START_LINK:-}" ]; then
   mkdir -p "$secrets" && chmod 700 "$secrets"
   python3 "$root/parse-link.py" "$AGENT_START_LINK" > "$secrets/source.json" || fail "AGENT_START_LINK is not a link this launcher understands"
-  printf '%s' "$AGENT_SOURCE_TOKEN" | tr -d '[:space:]' > "$secrets/source-token"
+  if [ -n "${AGENT_SOURCE_TOKEN:-}" ]; then
+    printf '%s' "$AGENT_SOURCE_TOKEN" | tr -d '[:space:]' > "$secrets/source-token"
+  fi
   chmod 600 "$secrets"/*
 fi
 
